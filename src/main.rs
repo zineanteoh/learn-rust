@@ -23,6 +23,10 @@ async fn manual_hello() -> impl Responder {
     HttpResponse::Ok().body("Hey there!")
 }
 
+async fn health_check() -> impl Responder {
+    HttpResponse::BadRequest().body("Not implemented yet")
+}
+
 // this macro enables async/await syntax in the main function
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
@@ -34,7 +38,8 @@ async fn main() -> std::io::Result<()> {
             .service(hello)
             .service(echo)
             .route("/hey", web::get().to(manual_hello))
-            .route("/{name}", web::get().to(greet))
+            .route("/hey/{name}", web::get().to(greet))
+            .route("/health_check", web::get().to(health_check))
     })
     .bind(("127.0.0.1", 8080))?
     .run()
