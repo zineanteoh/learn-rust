@@ -1,3 +1,4 @@
+mod run_trait;
 use actix_web::{get, post, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
 use tokio;
 
@@ -25,6 +26,9 @@ async fn manual_hello() -> impl Responder {
 // this macro enables async/await syntax in the main function
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    // run my trait code
+    run_trait::run_trait();
+
     HttpServer::new(|| {
         App::new()
             .service(hello)
