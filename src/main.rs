@@ -27,7 +27,7 @@ async fn health_check() -> impl Responder {
     HttpResponse::BadRequest().body("Not implemented yet")
 }
 
-// this macro enables async/await syntax in the main function
+// this macro enables async/await syntax in the main function. read more here: https://users.rust-lang.org/t/is-there-a-good-read-on-different-async-runtimes/36678
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     // run my trait code
